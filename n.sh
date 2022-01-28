@@ -9,12 +9,11 @@ which mkimage >/dev/null || die 'please install uboot-tools'
 which parted >/dev/null || die 'please install parted'
 which unzip >/dev/null || die 'please install unzip'
 
-ALPINE_VERSION="2018-11-09"
-echo "Download Alpine OS ${ALPINE_VERSION} "
-wget "https://github.com/yangxuan8282/phicomm-n1/releases/download/alpine/"$ALPINE_VERSION"-alpine-n1-aarch64.zip"
 
-unzip "$ALPINE_VERSION"-alpine-n1-aarch64.zip
-LOOP_DEV=$(losetup --find --show -P "$ALPINE_VERSION"-alpine-n1-aarch64.img)
+wget "https://dl-cdn.alpinelinux.org/alpine/v3.15/releases/aarch64/alpine-uboot-3.15.0-aarch64.tar.gz"
+
+tar -xf alpine-uboot-3.15.0-aarch64.tar.gz
+LOOP_DEV=$(losetup --find --show -P alpine-uboot-3.15.0-aarch64.tar.gz)
 mkdir -p /tmp/alpine
 mount "$LOOP_DEV"p2 /tmp/alpine
 mount "$LOOP_DEV"p1 /tmp/alpine/boot
